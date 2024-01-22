@@ -1,1 +1,77 @@
-keepass-backup.github.io
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KeePass Backup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Automated backup solution for KeePass password manager." />
+    <meta name="keywords" content="KeePass, backup, security, password manager, Dropbox, Backblaze, Koofr, Cloudflare" />
+    <meta property="og:title" content="KeePass Backup" />
+    <meta property="og:description" content="Automated backup solution for KeePass password manager." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/velizarn/keepass-backup" />
+    <link rel="stylesheet" href="./docsify.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="loading">
+    <div id="app"></div>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "How to Setup Automated KeePass Backups",
+      "description": "A DIY guide for automated backup solution for KeePass password manager.",
+      "dependencies": "KeePass password manager, a command-line environment (Bash or PowerShell), and at least one active cloud storage account (Dropbox, Backblaze, Koofr, Cloudflare, etc.)",
+      "author": {
+        "@type": "Person",
+        "name": "Velizar Nenov"
+      },
+      "genre": "Security & Backup",
+      "keywords": "KeePass, backup, automation, security, DIY",
+      "assesses": "Secure off-site KeePass backup strategies, implementing automated local-to-cloud synchronization.",
+      "mainEntityOfPage": "https://github.com/velizarn/keepass-backup"
+    }
+    </script>
+    <script src="./docsify.min.js"></script>
+    <script>
+      window.$docsify = {
+        auto2top: true,
+        name: 'KeePass backup',
+        loadSidebar: 'custom-sidebar.md',
+        homepage: 'README.md',
+        plugins: [
+          function (hook, vm) {
+            hook.afterEach(function (html, next) {
+              const extraContent =
+                '<p align="right" class="margin-top-20"><a href="https://github.com/velizarn/keepass-backup" target="_blank">Github repo &raquo;</a></p>';
+              next(html + extraContent);
+            });
+          },
+          function (hook, vm) {
+            hook.mounted(function () {
+              const sidebar = document.querySelector('.sidebar');
+              if (sidebar) {
+                const observer = new MutationObserver(function () {
+                  if (window.getComputedStyle(sidebar).transform === 'matrix(1, 0, 0, 1, 0, 0)' || document.body.classList.contains('open')) {
+                    sidebar.scrollTop = 0;
+                  }
+                });
+                observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+              }
+            });
+          },
+          function (hook, vm) {
+            // Runs every time a page is loaded or changed
+            hook.doneEach(function () {
+              const toggle = document.querySelector('.sidebar-toggle');
+              // Move the toggle button directly to the body to escape any page-level CSS containment bugs
+              if (toggle && toggle.parentNode !== document.body) {
+                document.body.appendChild(toggle);
+              }
+            });
+          }
+        ]
+      };
+    </script>
+  </body>
+</html>
