@@ -19,7 +19,7 @@ When you’re done using Keepass and decide to exit the application, a final tri
 
 <p>2) Open KeePass and go to <i>File</i> > <i>Open</i> > <i>Open URL...</i> and enter remote location of .kdbx file and credentials (if applicable). If you enter Username and Password then select prefered option for Remember field. Next time when you open KeePass you can open your .kdbx file from <i>File</i> > <i>Open Recent</i></p>
 
-<p>3) Create a dedicated KeePass entry (DO-NOT-DELETE-T1) to store Cloudinary credentials</p>
+<p>3) Create a dedicated KeePass entry (DO-NOT-DELETE-T1, <a href="/cld-entry.jpg">cld-entry.jpg</a>) to store Cloudinary credentials</p>
 
 <p>4) Configure required KeePass triggers, go to <i>Tools</i> > <i>Triggers</i>...</p>
 
