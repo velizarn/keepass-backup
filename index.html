@@ -1,1 +1,135 @@
-Sync .kdbx file with WebDAV and backup on a CDN. (WIP)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KeePass backup</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+        <h1>KeePass backup</h1>
+        <p>Access .kdbx file from WebDAV and backup on a CDN.</p>
+    </header>
+    <main>
+      <p>Seamless and secure way to manage your Keepass database,
+        where every update you make is automatically synchronized and backed up
+        without any additional effort. The outlined solution enables this by
+        connecting your local instance of Keepass to a remote WebDAV server,
+        ensuring that your password database (.kdbx file) is always safely
+        stored and accessible from anywhere.</p>
+      <p class="img"><img src="./diagram.png" width="800" alt="" /></p>
+      <p>When you open Keepass, the latest version of your database is retrieved from a WebDAV server (or any remote location). This means you’re always working with the most up-to-date information, no matter where you are and how many devices you use.</p>
+      <p>Whenever you save your database, automated triggers are executed to ensure that your data is not only stored securely but also backed up in additional location. The first trigger creates a temporary copy of the .kdbx file on your local machine. This copy acts as a safeguard during the backup process, ensuring that your working version remains intact.</p>
+      <p>Immediately after, the second trigger uploads this temporary copy to a designated CDN (Content Delivery Network). This step creates a secure backup of your database, providing an extra layer of protection by storing it in a different location.</p>
+      <p>When you’re done using Keepass and decide to exit the application, a final trigger is activated. This trigger automatically deletes the temporary file created during the save process, ensuring that no unnecessary copies of your sensitive data are left on your device.</p>
+      <p></p>
+
+      <h3>How to use</h3>
+
+      <p>1) Install KeePass (<a href="https://keepass.info/help/v1/setup.html" target="_blank">Installation &raquo;</a>)</p>
+
+      <p>2) Open KeePass and go to <i>File</i> > <i>Open</i> > <i>Open URL...</i> and enter remote location of .kdbx file and credentials (if applicable). If you enter Username and Password then select prefered option for Remember field. Next time when you open KeePass you can open your .kdbx file from <i>File</i> > <i>Open Recent</i></p>
+
+      <p>3) Create a dedicated <a href="javascript:;" onclick="openPopup()">KeePass entry (DO-NOT-DELETE-T1)</a> to store Cloudinary credentials</p>
+
+      <p>4) Configure required KeePass triggers, go to <i>Tools</i> > <i>Triggers</i>...</p>
+
+      <p>4.1) Export database on save
+        <pre>
+- <b>Properties</b>
+  - <i>Name</i>: Export database on save
+  - <i>Enabled</i>: true
+  - <i>Initially on</i>: true
+- <b>Events</b>
+  - <i>Event</i>: Saved database file
+- <b>Conditions</b> - not used
+- <b>Actions</b>
+  - <i>Action</i>: Export active database
+    - <i>File/URL</i>: location\to\store\{DB_BASENAME}.kdbx<sup>(1)</sup>
+    - <i>File format</i>: KeePass KDBX (2.x)</pre>
+      <span style="font-size:smaller;color:#999;"><i><sup>(1)</sup>Location where temp .kdbx file to be saved</i></span>
+      </p>
+
+      <p>4.2) Store database file on remote CDN
+        <pre>
+- <b>Properties</b>
+  - <i>Name</i>: Store database file on remote CDN
+  - <i>Enabled</i>: true
+  - <i>Initially on</i>: true
+- <b>Events</b>
+  - <i>Event</i>: Saved database file
+- <b>Conditions</b> - not used
+- <b>Actions</b>
+  - <i>Action</i>: Execute command line / URL
+    - <i>File/URL</i>: path\to\git\git-bash.exe<sup>(1)</sup>
+    - <i>Arguments</i>: path/to/cloudinary.bash "location/to/store/{DB_BASENAME}.kdbx" "{DB_BASENAME}.kdbx" {REF:N@T:DO-NOT-DELETE-T1}<sup>(2)</sup>
+    - <i>Wait for exit</i>: true
+    - <i>Window style</i>: Maximized
+  - <i>Action</i>: Show message box
+    - <i>Main instructio</i>n: Database {DB_BASENAME} stored on remote CDN
+    - <i>Icon</i>: None
+    - <i>Buttons</i>: OK
+    - <i>Default button</i>: Button 1
+    - <i>Action - Condition</i>: Button OK/Yes
+    - <i>Action</i>: None</pre>
+    <span style="font-size:smaller;color:#999;"><i><sup>(1)</sup>Path to git-bash.exe; not tested with powershell</i><br />
+      <i><sup>(2)</sup>Command to execute for uploading file to Cloudinary CDN by using cUrl. Required command line arguments:<br />
+      - local path to file to be uploaded<br />
+      - Cloudinary plublicId of the uploaded file<br />
+      - Cloudinary cloud name<br />
+      - Cloudinary API key<br />
+      - Cloudinary API secret<br />
+      - Cloudinary folder where file will be uploaded (optional)<br />
+      Note: Check repo for shell script cloudinary.bash<br />
+      Note: Parameters 3) to 6) are taken from a dedicated <a href="javascript:;" onclick="openPopup()">KeePass entry (DO-NOT-DELETE-T1)</a>, this means
+      all Cloudinary related credentials are stored in KeePass database.</i>
+      </span>
+      </p>
+
+      <div id="myPopup" class="popup">
+        <div class="popup-content">
+          <img src="./cld-entry.jpg" alt="">
+          <p><a href="javascript:;" id="close" title="Click to close popup">[X]</a></p>
+        </div>
+    </div>
+
+      <p>4.3) Delete temp file/s on exit
+        <pre>
+- <b>Properties</b>
+  - <i>Name</i>: Delete temp file/s on exit
+  - <i>Enabled</i>: true
+  - <i>Initially on</i>: true
+- <b>Events</b>
+  - <i>Event</i>: Application exit
+- <b>Conditions</b> - not used
+- <b>Actions</b>
+  - <i>Action</i>: Execute command line / URL
+    - <i>File/URL</i>: %comspec%<sup>(1)</sup>
+    - <i>Arguments</i>: /c del "C:\tmp\directory\*.kdbx"<sup>(2)</sup>
+    - <i>Wait for exit</i>: true
+    - <i>Window style</i>: Hidden</pre>
+    <span style="font-size:smaller;color:#999;"><i><sup>(1)</sup>The command interpreter, which by default is cmd.exe in NT systems, and COMMAND.COM in DOS systems</i><br />
+      <i><sup>(2)</sup>Command to execute with required arguments</i>
+      </span>
+      </p>
+    </main>
+    <footer>
+      <p><a href="https://github.com/velizarn/keepass-backup">Github repo &raquo;</a></p>
+    </footer>
+  </div>
+
+<script>
+  var popupElement = document.getElementById('myPopup');
+  function openPopup() {
+    popupElement.style.display = 'block';
+  }
+  document.getElementById('close').onclick = function(event) {
+    popupElement.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
+
