@@ -1,9 +1,7 @@
-/* Reset some basic elements */
 body, h1 {
   margin: 0;
   padding: 0;
 }
-/* Body Styling */
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -11,7 +9,6 @@ body {
   color: #333;
   padding: 20px;
 }
-/* Container for fixed width on desktop */
 .container {
   max-width: 1024px;
   margin: 0 auto;
@@ -19,7 +16,6 @@ body {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-/* Header Styling */
 header {
   text-align: center;
   padding: 10px 0 5px 0;
@@ -42,15 +38,14 @@ footer p {
   text-align: right;
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 1024px) {
   .container {
     width: 100%;
     padding: 10px;
   }
   img {
-    max-width: 100%; /* Ensures the image scales down on smaller screens */
-    height: auto; /* Maintains aspect ratio */
+    max-width: 100%;
+    height: auto;
   }
   header h1 {
     font-size: 1.5em;
@@ -68,7 +63,6 @@ footer p {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
 }
-
 .popup-content {
   display: flex;
   justify-content: center;
