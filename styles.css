@@ -33,6 +33,7 @@ main p.img {
 pre {
   padding: 0;
   background: #f5f5f5;
+  overflow-x: auto;
 }
 footer p {
   text-align: right;
