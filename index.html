@@ -15,15 +15,15 @@
     <main>
       <p>Seamless and secure way to manage your Keepass database,
         where every update you make is automatically synchronized and backed up
-        without any additional effort. The outlined solution enables this by
+        without additional effort. The outlined solution enables this by
         connecting your local instance of Keepass to a remote WebDAV server,
         ensuring that your password database (.kdbx file) is always safely
-        stored and accessible from anywhere.</p>
+        stored and accessible from any location.</p>
       <p class="img"><img src="./diagram.png" width="800" alt="" /></p>
-      <p>When you open Keepass, the latest version of your database is retrieved from a WebDAV server (or any remote location). This means you’re always working with the most up-to-date information, no matter where you are and how many devices you use.</p>
-      <p>Whenever you save your database, automated triggers are executed to ensure that your data is not only stored securely but also backed up in additional location. The first trigger creates a temporary copy of the .kdbx file on your local machine. This copy acts as a safeguard during the backup process, ensuring that your working version remains intact.</p>
-      <p>Immediately after, the second trigger uploads this temporary copy to a designated CDN (Content Delivery Network). This step creates a secure backup of your database, providing an extra layer of protection by storing it in a different location.</p>
-      <p>When you’re done using Keepass and decide to exit the application, a final trigger is activated. This trigger automatically deletes the temporary file created during the save process, ensuring that no unnecessary copies of your sensitive data are left on your device.</p>
+      <p>When you open Keepass, the latest version of your database is retrieved from a WebDAV server (or any remote location). This ensures you’re are always working with the most up-to-date information, regardless of your location or the number of devices you utilize.</p>
+      <p>Whenever you save your database, automated triggers are executed to ensure that your data is not only stored securely but also backed up in additional location. The first trigger creates a provisional temporary copy of the .kdbx file on your local machine. This copy serves as a safeguard during the backup process, ensuring that your working version remains intact.</p>
+      <p>Immediately after, the second trigger uploads this temporary copy to a designated CDN (Content Delivery Network). This step creates a secure backup of your database, providing an additional layer of protection by storing it in a different location.</p>
+      <p>When you’re done using Keepass and decide to exit the application, a final trigger is activated. This trigger automatically deletes the provisional temporary file created during the save process, ensuring that no unnecessary copies of your sensitive data remain on the device.</p>
       <p></p>
 
       <h3>How to use</h3>
