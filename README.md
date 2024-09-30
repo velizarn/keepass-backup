@@ -5,13 +5,13 @@ Access .kdbx file from WebDAV and backup on a CDN.
 
 ![Flow diagram](/diagram.png)
 
-When you open Keepass, the latest version of your database is retrieved from a WebDAV server (or any remote location). This means you’re always working with the most up-to-date information, no matter where you are and how many devices you use.
+When you open Keepass, the latest version of your database is retrieved from a WebDAV server (or any remote location). This ensures you’re are always working with the most up-to-date information, regardless of your location or the number of devices you utilize.
 
-Whenever you save your database, automated triggers are executed to ensure that your data is not only stored securely but also backed up in additional location. The first trigger creates a temporary copy of the .kdbx file on your local machine. This copy acts as a safeguard during the backup process, ensuring that your working version remains intact.
+Whenever you save your database, automated triggers are executed to ensure that your data is not only stored securely but also backed up on additional location. The first trigger creates a provisional temporary copy of the .kdbx file on your local machine. This copy serves as a safeguard during the backup process, ensuring that your working version remains intact.
 
-Immediately after, the second trigger uploads this temporary copy to a designated CDN (Content Delivery Network). This step creates a secure backup of your database, providing an extra layer of protection by storing it in a different location.
+Immediately after, the second trigger uploads this temporary copy to a designated CDN (Content Delivery Network). This step creates a secure backup of your database, providing an additional layer of protection by storing it in a different location.
 
-When you’re done using Keepass and decide to exit the application, a final trigger is activated. This trigger automatically deletes the temporary file created during the save process, ensuring that no unnecessary copies of your sensitive data are left on your device.
+When you’re done using Keepass and decide to exit the application, a final trigger is activated. This trigger automatically deletes the provisional temporary file created during the save process, ensuring that no unnecessary copies of your sensitive data remain on the device.
 
 ## How to use
 
