@@ -113,6 +113,8 @@ Note: Parameters 3) to 6) are taken from a dedicated KeePass entry (DO-NOT-DELET
     - Prevent certain screen captures: checked
 - Advancced
   - Limit to single instance: checked
+ 
+:point_right: Always keep a backup copy of the KeePass DB file in an accessible location, i.e. not in a location for which credentials are stored in KeePass itself. 
 
 ## Resources
 
