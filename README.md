@@ -7,6 +7,8 @@ Access .kdbx file from WebDAV and backup on a CDN.
 
 When you open Keepass, the latest version of your database is retrieved from a WebDAV server (or any remote location). This ensures you’re are always working with the most up-to-date information, regardless of your location or the number of devices you utilize.
 
+Then the main idea is to use KeePass triggers, which allow you to automate actions based on specific events (such as saving the database or exiting the application). 
+
 Whenever you save your database, automated triggers are executed to ensure that your data is not only stored securely but also backed up on additional location. The first trigger creates a provisional temporary copy of the .kdbx file on your local machine. This copy serves as a safeguard during the backup process, ensuring that your working version remains intact.
 
 Immediately after, the second trigger uploads this temporary copy to a designated CDN (Content Delivery Network). This step creates a secure backup of your database, providing an additional layer of protection by storing it in a different location.
