@@ -3,12 +3,13 @@
 **_Cloud Providers_**
 
 * [Dropbox](providers/Dropbox.md)
-* [Backblaze B2](providers/Backblaze.md)
 * [Koofr](providers/Koofr.md)
+* [Backblaze B2](providers/Backblaze.md)
+* [Cloudflare R2](providers/Cloudflare.md)
+* [IDrive e2](providers/IDrive.md)
+* [Rackspace Cloud Files](providers/Rackspace.md)
 * [Cloudinary](providers/Cloudinary.md)
 * [Yandex Disk](providers/Yandex.md)
-* [Cloudflare R2](providers/Cloudflare.md)
-* [Rackspace Cloud Files](providers/Rackspace.md)
 
 <br />
 
