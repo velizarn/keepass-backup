@@ -17,6 +17,12 @@
   --sidebar-toggle-bg: #DDD; /* Soft purple background for the toggle button */
   font-family: Verdana, sans-serif;
 }
+
+html {
+  min-height: 100%;
+  background-color: var(--bg-color);
+}
+
 .sidebar-toggle:not(:hover) {
   background-color: #F9F6FE;
 }
@@ -47,6 +53,7 @@
 }
 /* Optional custom touches for a polished look */
 body {
+  min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -85,6 +92,21 @@ small b {
 .margin-top-20 {
   margin-top: 2em !important;
 }
+.page-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid var(--sidebar-border);
+  padding-top: 1rem;
+}
+.page-footer select {
+  padding: 0.35rem 0.5rem;
+  appearance: auto;
+  font-size: 0.9rem;
+}
+.page-footer a {
+  margin-left: auto;
+}
 @media screen and (max-width: 768px) {
   /* Force the sidebar to span the viewport and stay fixed when opened */
   .sidebar {
@@ -96,8 +118,74 @@ small b {
     overflow-y: auto !important;
     z-index: 40; /* Ensure it stays above the content */
   }
+  .sidebar-nav li > a {
+    font-size: 1.1rem !important;
+  }
   .markdown-section {
     font-size: 1.2rem;
     line-height: 1.6;
+  }
+}
+
+[data-theme='dark'] {
+  --theme-color: #a78bfa;
+  --theme-color-dark: #c4b5fd;
+  --text-color: #cbd5e1;
+  --heading-color: #f8fafc;
+  --bg-color: #111827;
+  --sidebar-background: #1f2937;
+  --sidebar-border: #334155;
+  --sidebar-nav-link-color: #cbd5e1;
+  --sidebar-nav-link-color--active: #bfdbfe;
+  --code-bg: #1e293b;
+  --code-color: #e2e8f0;
+  --sidebar-toggle-bg: #334155;
+  color-scheme: dark;
+
+  & .sidebar-toggle:not(:hover) {
+    background-color: var(--sidebar-toggle-bg);
+  }
+  & .markdown-section a,
+  & .sidebar-nav li > a {
+    color: #93c5fd;
+    text-decoration-color: #93c5fd;
+  }
+  & .markdown-section a:hover,
+  & .sidebar-nav li > a:hover {
+    color: #bfdbfe;
+    text-decoration-color: #bfdbfe;
+  }
+  & .sidebar,
+  & .markdown-section,
+  & .content {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  & .sidebar {
+    background-color: var(--sidebar-background);
+    border-color: var(--sidebar-border);
+  }
+  & .markdown-section h1,
+  & .markdown-section h2,
+  & .markdown-section h3,
+  & .markdown-section h4,
+  & .markdown-section strong {
+    color: var(--heading-color);
+  }
+  & .markdown-section code,
+  & .markdown-section pre {
+    background-color: var(--code-bg);
+    color: var(--code-color);
+  }
+  & .markdown-section .callout.note {
+    background-color: #1e293b;
+  }
+
+  & .app-name a,
+  & .sidebar-nav strong {
+    color: var(--heading-color);
+  }
+  & .page-footer select {
+    color: var(--bg-color);
   }
 }

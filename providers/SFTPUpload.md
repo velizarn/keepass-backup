@@ -4,6 +4,8 @@ By leveraging your pre-saved WinSCP Site Manager profile, the KeePass trigger re
 
 It is also possible to configure SFTP authentication with SSH or YubiKey and Pageant for advanced certificate-based security.
 
+\* *Note*: By using the "Simple FTP service" provided by [DocEvent.io](https://docevent.io/), you can access any AWS S3-compatible storage service, including [Cloudflare R2](https://www.cloudflare.com/products/r2/), [Backblaze B2](https://www.backblaze.com/cloud-storage), [IDrive e2](https://www.idrive.com/s3-storage-e2/), and others, through SFTP, SCP, or FTP/S.
+
 ### Trigger configuration
 
 **Properties**
@@ -22,7 +24,7 @@ _Empty._
 
 **Actions**
 
-Execute command line / URL (Windows version)
+Execute command line / URL
 - File/URL: `%comspec%`
 - Arguments: `/c timeout /t 2 >nul & "C:\Users\UserName\AppData\Local\Programs\WinSCP\WinSCP.exe" /log="C:/path-to/winscp_debug.log" /command "open MySFTPSiteConnection" "option confirm off" "put C:\Users\UserName\path-to\filename.ext /remote-folder/" "exit"`
 - Wait for exit: yes
@@ -44,3 +46,4 @@ Execute command line / URL (Windows version)
   - [SFTPCloud.io - Free SFTP server](https://sftpcloud.io/tools/free-sftp-server)
   - [Couchdrop.io](https://www.couchdrop.io/)
   - [SFTPToGo.com](https://sftptogo.com/)
+  - [DocEvent.io](https://docevent.io/)

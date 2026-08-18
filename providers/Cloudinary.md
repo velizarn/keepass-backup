@@ -59,7 +59,7 @@ eval $commandStr
 exit 0
 ```
 
-> [!WARNING]
+> [!NOTE]
 > In general, it is not a good idea to upload non-media files to a CDN storage like Cloudinary even if you toggle a file to private/authenticated access. Cloudinary is explicitly an asset-management solution designed for web/app media (images, videos, PDFs, design files). Also CDNs are built for delivery and not a long-term storage.
 
 ### Resources
