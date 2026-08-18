@@ -46,29 +46,6 @@
                 '<p align="right" class="margin-top-20"><a href="https://github.com/velizarn/keepass-backup" target="_blank">Github repo &raquo;</a></p>';
               next(html + extraContent);
             });
-          },
-          function (hook, vm) {
-            hook.mounted(function () {
-              const sidebar = document.querySelector('.sidebar');
-              if (sidebar) {
-                const observer = new MutationObserver(function () {
-                  if (window.getComputedStyle(sidebar).transform === 'matrix(1, 0, 0, 1, 0, 0)' || document.body.classList.contains('open')) {
-                    sidebar.scrollTop = 0;
-                  }
-                });
-                observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-              }
-            });
-          },
-          function (hook, vm) {
-            // Runs every time a page is loaded or changed
-            hook.doneEach(function () {
-              const toggle = document.querySelector('.sidebar-toggle');
-              // Move the toggle button directly to the body to escape any page-level CSS containment bugs
-              if (toggle && toggle.parentNode !== document.body) {
-                document.body.appendChild(toggle);
-              }
-            });
           }
         ]
       };
