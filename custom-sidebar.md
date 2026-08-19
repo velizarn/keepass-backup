@@ -10,9 +10,8 @@
 * [Rackspace Cloud Files](providers/Rackspace.md)
 * [Cloudinary](providers/Cloudinary.md)
 * [Yandex Disk](providers/Yandex.md)
-
+* [Upload to SFTP via WinSCP](providers/SFTPUpload.md)
+* 
 <br />
 
 > **Looking for another provider?**<br />This list is not exhaustive. Feel free to experiment with any other cloud storage provider that offers an API...
-
-* [Upload to SFTP via WinSCP](providers/SFTPUpload.md)
