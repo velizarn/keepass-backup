@@ -22,7 +22,7 @@ _Empty._
 
 **Actions**
 
-Execute command line / URL (Windows version)
+Execute command line / URL
 - File/URL: `%comspec%`
 - Arguments: `/c timeout /t 2 >nul & "C:\Users\UserName\AppData\Local\Programs\WinSCP\WinSCP.exe" /log="C:/path-to/winscp_debug.log" /command "open MySFTPSiteConnection" "option confirm off" "put C:\Users\UserName\path-to\filename.ext /remote-folder/" "exit"`
 - Wait for exit: yes
